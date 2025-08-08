@@ -1,0 +1,108 @@
+.chest:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.hand:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.shoulder:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.biceps:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.thigh:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.leg:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.forearm:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.neck:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.side:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.tricep:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.hamstring:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.calf:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.glute:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.lat:hover polygon {
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+polygon:hover{
+    fill: palevioletred;
+    cursor: pointer;
+}
+
+.no-hover {
+    pointer-events: none;
+}
+
+:root {
+    --bg-color: #122620; /* Dark mode background */
+    --text-color: #ffffff; /* Dark mode text */
+  }
+  
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  input, textarea {
+    background-color: #1E293B; /* Dark background */
+    color: white !important; /* Ensure text is always white */
+    border: 1px solid #4A5568; /* Slightly lighter border */
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 16px;
+    color-scheme: dark; /* Prevents system-based color changes */
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: #94A3B8; /* Light gray for better contrast */
+        opacity: 1;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #FF6F00; /* Orange border when focused */
+        outline: none;
+    }
+

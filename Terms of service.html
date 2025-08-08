@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="Stylesheet" href="BeFit.css" type="text/css" />
+    <title>Terms and service</title>
+    <style>
+        h2{
+            color:orange
+        }
+    </style>
+</head>
+<body id ="theme-status" class="bg-[#FAFAFA]">
+  <header class="bg-[#0C3D48] border-gray-200 ">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="BeFit2.0.html" class="flex items-center">
+            <img src="Flux_Dev_A_modern_dynamic_logo_for_the_BeFit_website_a_fitness_1 - Copy (2) - Copy - Copy.jpeg" class="h-16 " />
+        </a>
+        <button data-collapse-toggle="navbar-default" onclick="toggleNavbar()" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14" onclick="">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+            <ul class="font-medium flex items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#0C3D48] md:space-x-8 md:mt-0 md:border-0 ">
+                <li>
+                    <!-- Dark/Light Mode Toggle -->
+                    <div class="flex p-4 items-center">
+                        <span class="text-white mr-2"><pre>     </pre></span>
+                        <label for="theme-toggle" class="relative inline-block w-12 h-6">
+                        <input type="checkbox" id="theme-toggle" class="hidden peer" onclick="toggleTheme()" />
+                        <div class="bg-gray-400 peer-checked:bg-orange-600 w-full h-full rounded-full cursor-pointer transition-all duration-300 ease-in-out"></div>
+                        <div id="theme-circle" class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all duration-300 ease-in-out peer-checked:left-7"></div>
+                        </label>
+                        <span class="text-white ml-2">Dark</span>
+                   
+            <li>
+                <!-- Profile Icon -->
+                <button id="dropdownButton" onclick="toggleDropdown()" class="mx-3 my-3 border-2 hover:bg-[#f0ae63] rounded-full w-12 h-12 border-white">
+                    <i class="fa-solid fa-user fa-xl text-white"></i>
+                </button>
+            </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div id="navbarModal" class="fixed inset-0 flex items-center z-50 justify-center bg-[#0C3D48] bg-opacity-50 hidden">
+    <div class="bg-[#0C3D48]  p-6 rounded-lg shadow-lg w-80 relative">
+        <button onclick="toggleNavbar()" class="absolute top-4 right-4 text-gray-600 dark:text-gray-300">&times;</button>
+        <ul class="font-medium flex flex-col p-4 space-y-2">
+            <li>
+                <!-- Dark/Light Mode Toggle -->
+                <div class="flex p-4 items-center">
+                    <!-- <span class="text-white mr-2">Dark</span> -->
+                    <label for="theme-toggle" class="relative inline-block w-12 h-6">
+                    <input type="checkbox" id="theme-toggle" class="hidden peer" onclick="toggleTheme()" /><span class="text-white  mr-2">Dark</span> 
+                    </label>
+                </div>
+        </li>   
+        <li><a href="BeFit2.0.html" class="block py-2 px-3 text-white hover:bg-[#88a880] ">Home</a></li>
+        <li><a href="workouts.html" class="block py-2 px-3 text-white hover:bg-[#88a880] ">Workout</a></li>
+        <li><a href="articles.html" class="block py-2 px-3 text-white hover:bg-[#88a880] ">Articles</a></li>
+        <li><a href="routines.html" class="flex items-center p-2 text-white rounded-lg  hover:bg-[#88a880] hover:text-black group">Routines</a></li>
+        <li><button class="block w-full text-left px-4 py-2 text-white z-50 hover:bg-[#88a880]" onclick="openModal('login')">
+            Login
+        </button></li>
+        <li><button class="block w-full text-left px-4 py-2 z-50 text-white hover:bg-[#88a880]" onclick="openModal('signup')">
+            Sign Up
+        </button></li>
+        </ul>
+    </div>
+    </div>
+
+ <!-- Dropdown Menu -->
+ <div id="dropdownMenu" class="hidden absolute right-0 z-50  font-bold w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+    <button class="block w-full text-left px-4 py-2 text-gray-700 z-50 hover:bg-gray-100" onclick="openModal('login')">
+    Login
+</button>
+<button class="block w-full text-left px-4 py-2 z-50 text-gray-700 hover:bg-gray-100" onclick="openModal('signup')">
+    Sign Up
+</button>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-[#0C3D48]  rounded-lg p-6 w-96">
+        <!-- Modal Header --> 
+        <div class="flex justify-between items-center">
+            <h2 id="modalTitle" class="text-lg text-white font-semibold"></h2>
+            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+        </div>
+
+        <!-- Modal Content -->
+            <div id="loginForm" class="hidden">
+                <form class="mt-4">
+                    <div>
+                        <label for="loginEmail" class="block text-sm font-medium text-white">Email</label>
+                        <input type="email" id="loginEmail" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <div class="mt-4">
+                        <label for="loginPassword" class="block text-sm font-medium text-white">Password</label>
+                        <input type="password" id="loginPassword" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                    </div>
+                    <button type="submit" class="mt-4 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 w-full">
+                        Login
+                    </button>
+                </form>
+            </div>
+
+
+            <div id="signupForm" class="hidden">
+                <div class="bg-inherit  rounded-lg w-full max-w-md p-6">
+                    <button id="closeSignupModal" class="text-gray-400 hover:text-gray-600">
+                    </button>
+                    <form class="mt-4 ">
+                    <!-- Full Name -->
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-white">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-white">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block mb-2 w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your email" required>
+                    </div>
+                
+                    <!-- Mobile Number -->
+                    <div>
+                        <label for="mobile" class="block text-sm font-medium text-white">Mobile Number</label>
+                        <input type="tel" id="mobile" name="mobile" class="mt-1 block w-full mb-2 rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your mobile number" required>
+                    </div>
+                
+                    <!-- Age -->
+                    <div>
+                        <label for="age" class="block text-sm font-medium text-white">Age</label>
+                        <input type="number" id="age" name="age" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your age" required>
+                    </div>
+                
+                    <!-- Password -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-white">Password</label>
+                        <input type="password" id="password" name="password" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600  sm:text-sm" placeholder="Enter your password" required>
+                    </div>
+                
+                    <!-- Confirm Password -->
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-white">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600  sm:text-sm" placeholder="Confirm your password" required>
+                    </div>
+                
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button type="submit" class="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700">Sign Up</button>
+                    </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+      
+    <div class="max-w-4xl mx-auto bg-inherit p-8 rounded-lg">
+        <h1 class="text-3xl pt-20 text-center text-[#488b77] font-bold mb-4">Terms of Service</h1>
+        <h2 class="text-xl font-semibold mt-6">1. Who Can Use BeFit</h2>
+        <p>You must be at least 13 years old (or the required age in your country) and have the legal right to accept these Terms.</p>
+        
+        <h2 class="text-xl font-semibold mt-6">2. Your Account</h2>
+        <ul class="list-disc list-inside">
+            <li>Provide accurate information when signing up.</li>
+            <li>Keep your login details safe.</li>
+            <li>You are responsible for your account activity.</li>
+            <li>We are not responsible for unauthorized account access.</li>
+        </ul>
+        
+        <h2 class="text-xl font-semibold mt-6">3. Using BeFit</h2>
+        <ul class="list-disc list-inside">
+            <li>BeFit offers fitness tracking and workout plans for informational purposes.</li>
+            <li>We are not a medical service. Consult a doctor before starting any new fitness routine.</li>
+            <li>Do not misuse or interfere with our services.</li>
+        </ul>
+        
+        <h2 class="text-xl font-semibold mt-6">4. Payments (If Applicable)</h2>
+        <ul class="list-disc list-inside">
+            <li>Some features may require payment.</li>
+            <li>Payments are final and non-refundable unless required by law.</li>
+            <li>We may change pricing or features with notice.</li>
+        </ul>
+        
+        <h2 class="text-xl font-semibold mt-6">5. What You Cannot Do</h2>
+        <ul class="list-disc list-inside">
+            <li>Use BeFit for illegal activities.</li>
+            <li>Post harmful, abusive, or false content.</li>
+            <li>Hack, modify, or disrupt our services.</li>
+        </ul>
+        
+        <h2 class="text-xl font-semibold mt-6">6. Account Suspension</h2>
+        <ul class="list-disc list-inside">
+            <li>We may suspend or terminate your account if you violate these Terms.</li>
+            <li>You can stop using BeFit anytime, but we do not offer refunds.</li>
+        </ul>
+        
+        <h2 class="text-xl font-semibold mt-6">7. Limits of Liability</h2>
+        <p>BeFit is provided "as is" without guarantees. We are not responsible for any injuries or damages from using our services.</p>
+        
+        <h2 class="text-xl font-semibold mt-6">8. Privacy Policy</h2>
+        <p>Our Privacy Policy explains how we collect and use your data.</p>
+        
+        <h2 class="text-xl font-semibold mt-6">9. Changes to These Terms</h2>
+        <p>We may update these Terms. Continued use means you accept the changes.</p>
+        
+        <h2 class="text-xl font-semibold mt-6">10. Contact Us</h2>
+        <p>If you have questions, email us at <span class="font-semibold">support@befit.com</span>.</p>
+    </div>
+
+    <footer class="bg-[#0C3D48] shadow-sm ">
+        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 BeFit. All rights reserved.</span>
+          <div class="mt-4 flex justify-center space-x-6 md:mt-0">
+            <a href="https://www.facebook.com/" class="text-gray-500 pt-1 hover:text-sm hover:text-gray-400 dark:text-gray-400 dark:hover:text-white">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/?lang=en&mx=2" class="text-gray-500 text-base pt-2 hover:text-gray-400 dark:text-gray-400 dark:hover:text-white hover:scale-90 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 50 50" class="fill-current hover:scale-45 transition-transform">
+                    <path d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"></path>
+                </svg>
+            </a>                             
+            <a href="https://www.instagram.com/" class="text-gray-500 hover:text-sm hover:text-gray-400 pt-1 dark:text-gray-400 dark:hover:text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/" class="text-gray-500 hover:text-sm hover:text-gray-400 pt-1 dark:text-gray-400 dark:hover:text-white">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+          <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+              <li>
+                  <a href="Privacy Policy.html" class="hover:underline hover:text-white me-4 md:me-6">Privacy Policy</a>
+              </li>
+              <li>
+                  <a href="Terms of service.html" class="hover:underline hover:text-white me-4 md:me-6">Terms of Service</a>
+              </li>
+              <li>
+                  <a href="Contact us.html" class="hover:underline hover:text-white">Contact Us</a>
+              </li>
+          </ul>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

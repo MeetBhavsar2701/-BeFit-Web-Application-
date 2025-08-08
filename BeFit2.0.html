@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeFit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;700&family=Anton&display=swap" rel="stylesheet">
+    <link rel="Stylesheet" href="BeFit.css" type="text/css" />
+    <link href="https://icons.pqoqubbw.dev/c/instagram.json">
+</head>
+<body id ="theme-status">
+
+    <header class="bg-[#0C3D48] border-gray-200 ">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="BeFit2.0.html" class="flex items-center">
+                <img src="Flux_Dev_A_modern_dynamic_logo_for_the_BeFit_website_a_fitness_1 - Copy (2) - Copy - Copy.jpeg" class="h-16 " />
+            </a>
+            <button data-collapse-toggle="navbar-default" onclick="toggleNavbar()" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14" onclick="">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#0C3D48] md:space-x-8 md:mt-0 md:border-0 ">
+                <li>
+                        <!-- Dark/Light Mode Toggle -->
+                        <div class="flex p-4 items-center">
+                            <span class="text-white mr-2"><pre>     </pre></span>
+                            <label for="theme-toggle" class="relative inline-block w-12 h-6">
+                            <input type="checkbox" id="theme-toggle" class="hidden peer" onclick="toggleTheme()" />
+                            <div class="bg-gray-400 peer-checked:bg-orange-600 w-full h-full rounded-full cursor-pointer transition-all duration-300 ease-in-out"></div>
+                            <div id="theme-circle" class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all duration-300 ease-in-out peer-checked:left-7"></div>
+                            </label>
+                            <span class="text-white ml-2">Dark</span>
+                        </div>
+                </li>
+                <li>
+                    <!-- Profile Icon -->
+                    <button id="dropdownButton" onclick="toggleDropdown()" class="mx-3 my-3 border-2 hover:bg-[#f0ae63] rounded-full w-12 h-12 border-white">
+                        <i class="fa-solid fa-user fa-xl text-white"></i>
+                    </button>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dropdown Menu -->
+    <div id="dropdownMenu" class="hidden absolute right-0 z-50  font-bold w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+        <button class="block w-full text-left px-4 py-2 text-gray-700 z-50 hover:bg-gray-100" onclick="openModal('login')">
+        Login
+    </button>
+    <button class="block w-full text-left px-4 py-2 z-50 text-gray-700 hover:bg-gray-100" onclick="openModal('signup')">
+        Sign Up
+    </button>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-[#0C3D48]  rounded-lg p-6 w-96">
+            <!-- Modal Header --> 
+            <div class="flex justify-between items-center">
+                <h2 id="modalTitle" class="text-lg text-white font-semibold"></h2>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+            </div>
+
+            <!-- Modal Content -->
+                <div id="loginForm" class="hidden">
+                    <form class="mt-4">
+                        <div>
+                            <label for="loginEmail" class="block text-sm font-medium text-white">Email</label>
+                            <input type="email" id="loginEmail" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-600 focus:border-orange-600" />
+                        </div>
+                        <div class="mt-4">
+                            <label for="loginPassword" class="block text-sm font-medium text-white">Password</label>
+                            <input type="password" id="loginPassword" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-600 focus:border-orange-600" />
+                        </div>
+                        <button type="submit" class="mt-4 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 w-full">
+                            Login
+                        </button>
+                    </form>
+                </div>
+
+
+                <div id="signupForm" class="hidden">
+                    <div class="bg-inherit  rounded-lg w-full max-w-md p-6">
+                        <button id="closeSignupModal" class="text-gray-400 hover:text-gray-600">
+                        </button>
+                        <form class="mt-4 ">
+                        <!-- Full Name -->
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-white">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-white">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block mb-2 w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your email" required>
+                        </div>
+                    
+                        <!-- Mobile Number -->
+                        <div>
+                            <label for="mobile" class="block text-sm font-medium text-white">Mobile Number</label>
+                            <input type="tel" id="mobile" name="mobile" class="mt-1 block w-full mb-2 rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your mobile number" required>
+                        </div>
+                    
+                        <!-- Age -->
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-white">Age</label>
+                            <input type="number" id="age" name="age" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600 focus:border-orange-600 sm:text-sm" placeholder="Enter your age" required>
+                        </div>
+                    
+                        <!-- Password -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-white">Password</label>
+                            <input type="password" id="password" name="password" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600  sm:text-sm" placeholder="Enter your password" required>
+                        </div>
+                    
+                        <!-- Confirm Password -->
+                        <div>
+                            <label for="confirmPassword" class="block text-sm font-medium text-white">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="mt-1 mb-2 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-4 focus:ring-orange-600  sm:text-sm" placeholder="Confirm your password" required>
+                        </div>
+                    
+                        <!-- Submit Button -->
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-orange-600 text-white px-4 py-2 rounded-md hover:bg-orange-700">Sign Up</button>
+                        </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="navbarModal" class="fixed inset-0 flex items-center z-50 justify-center bg-[#0C3D48] bg-opacity-50 hidden">
+    <div class="bg-[#0C3D48]  p-6 rounded-lg shadow-lg w-80 relative">
+        <button onclick="toggleNavbar()" class="absolute top-4 right-4 text-gray-600 dark:text-gray-300">&times;</button>
+        <ul class="font-medium flex flex-col p-4 space-y-2">
+            <li>
+                <!-- Dark/Light Mode Toggle -->
+                <div class="flex p-4 items-center">
+                    <!-- <span class="text-white mr-2">Dark</span> -->
+                    <label for="theme-toggle" class="relative inline-block w-12 h-6">
+                    <input type="checkbox" id="theme-toggle" class="hidden peer" onclick="toggleTheme()" /><span class="text-white  mr-2">Dark</span> 
+                    </label>
+                </div>
+        </li>   
+        <li><a href="BeFit2.0.html" class="block py-2 px-3 text-white hover:bg-[#88a880] ">Home</a></li>
+        <li><a href="workouts.html" class="block py-2 px-3 text-white hover:bg-[#88a880] ">Workout</a></li>
+        <li><a href="articles.html" class="block py-2 px-3 text-white hover:bg-[#88a880] ">Articles</a></li>
+        <li><a href="routines.html" class="flex items-center p-2 text-white rounded-lg  hover:bg-[#88a880] hover:text-black group">Routines</a></li>
+        <li><button class="block w-full text-left px-4 py-2 text-white z-50 hover:bg-[#88a880]" onclick="openModal('login')">
+            Login
+        </button></li>
+        <li><button class="block w-full text-left px-4 py-2 z-50 text-white hover:bg-[#88a880]" onclick="openModal('signup')">
+            Sign Up
+        </button></li>
+        </ul>
+    </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-[1fr,8fr]">
+       <!-- Sidebar  -->
+        <aside id="default-sidebar" class="hidden md:block w-fit h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+            <div class="h-full px-3 py-4 overflow-y-auto bg-[#A4BF9D]">
+               <ul class="space-y-2 font-medium">
+                  <li class="pt-16 pb-10">
+                     <a href="BeFit2.0.html" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#88a880] hover:text-black group">
+                        <i class="fa-solid fa-house text-3xl"></i>
+                        <span class="ms-3">Home</span>
+                     </a>
+                  </li>
+                  <li class="pb-10">
+                     <a href="workouts.html" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#88a880] hover:text-black group">
+                        <i class="fa-solid fa-dumbbell text-3xl"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Workout</span>
+                     </a>
+                  </li>
+                  <li class="pb-10">
+                     <a href="routines.html" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#88a880] hover:text-black group">
+                        <i class="fa-sharp fa-regular fa-calendar-days text-3xl"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Routines</span>
+                     </a>
+                  </li>
+                  <li class="pb-10">
+                     <a href="articles.html" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#88a880] hover:text-black group">
+                        <i class="fa-sharp fa-solid fa-newspaper text-3xl"></i>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Articles</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </aside>
+    
+        <div class="grid grid-cols-1 md:grid-cols-[1fr,1fr] lg:grid-rows-1">
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr,1fr] gap-4 w-fit ">
+                <div class="flex">
+                        <!-- MALE FRONT  -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 750" width="400" hieght="400" preserveAspectRatio="xMidYMid meet" id="Male-Front" class="flex-intial w-full h-auto">
+                            <!-- Hair  width: 500px; height: 800px; -->
+                            <polygon id="hair" class="no-hover" points="211,70 213,50 222,49 234,50 249,49 258,48 264,56 266,67 270,47 263,37 256,27 249,27 243,30 229,25 222,28 215,35 211,39 208,49 209,55" 
+                                fill="#000000" stroke="black" stroke-width="5" />
+        
+                            <!-- Face -->
+                            <polygon id="face" class="no-hover" points="211,72 204,76 204,85 214,96 218,106 228,117 238,122 245,118 257,116 264,105 267,95 272,90 274,80 267,75 263,58 261,49 253,48 247,51 236,51 230,49 220,49 215,52 213,59" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                            <!-- Neck -->
+                            <polygon id="neck" class="no-hover" points="213,151 215,134 217,106 223,118 232,119 239,121 252,115 260,109 264,115 264,132 264,144 272,153 255,154 249,157 242,160 234,159 228,153 219,153" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                        <g class="neck" onclick="muscleClicked('Chest')">
+                                <!-- Left Neck -->
+                                <polygon id="left-neck" points="184,148 193,143 202,138 212,135 216,140 214,148 212,157 206,157 196,156 190,151" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Neck -->
+                                <polygon id="right-neck" points="264,131 264,142 263,151 269,153 278,158 282,151 293,152 300,152 291,145 275,139" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+        
+                        <g class="chest" onclick="muscleClicked('Chest')" >
+                                <!-- Left Chest -->
+                                <polygon id="left-chest" points="157,200 175,179 187,163 198,160 216,153 229,152 240,162 239,171 239,193 237,202 235,209 232,212 229,217 224,218 232,212 213,228 205,226 194,225 185,223 168,207" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Chest -->
+                                <polygon id="right-chest" points="240,160 239,200 249,218 262,225 282,229 294,225 313,206 322,202 316,193 303,180 298,174 280,155 266,154 253,154" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+                        
+                        <g class="shoulder" onclick="muscleClicked('shoulder')">
+                                <!-- Left Shoulder -->
+                                <polygon id="left-shoulder" points="141,201 131,203 137,182 146,165 163,155 177,154 193,151 202,154 192,162 183,172 176,177 175,183 169,187 164,190 158,199" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Shoulder -->
+                                <polygon id="right-shoulder" points="281,156 295,169 303,179 312,188 321,196 329,201 348,207 344,190 337,168 324,157 311,154 301,149 290,150" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+                            
+                            <g class="biceps" onclick="muscleClicked('biceps')">
+                                <!-- Left Biceps -->
+                                <polygon id="left-biceps" points="314,211 312,233 319,239 326,246 333,255 340,265 350,271 357,271 365,268 369,252 368,242 363,232 355,211 341,204 326,203 320,203" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Biceps -->
+                                <polygon id="right-biceps" points="133,206 120,220 118,232 113,237 110,254 110,268 120,274 131,271 141,262 145,253 151,245 159,241 167,226 168,218 167,212 160,203 145,205" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <g class="forearm" onclick="muscleClicked('forearm')">
+                                <!-- Left Forearm -->
+                                <polygon id="left-forearm" points="346,272 350,278 353,286 359,298 371,311 380,321 387,326 400,337 403,346 409,345 414,340 418,334 416,328 407,311 403,301 397,284 392,275 384,262 371,252 371,258 368,265 365,272 359,271" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Forearm -->
+                                <polygon id="right-forearm" points="108,248 97,259 91,267 87,277 80,282 79,293 72,306 69,315 64,328 67,340 78,343 93,331 103,317 113,307 124,289 137,270 124,275 117,270 113,266 109,259" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <g class="hand" onclick="muscleClicked('hand')">
+                                <!-- Left Hand -->
+                                <polygon id="left-hand" points="404,343 403,352 404,367 404,379 410,385 412,370 420,380 421,397 425,391 428,401 432,394 432,388 432,380 432,368 428,361 421,348 417,337 416,344 410,346" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Hand -->
+                                <polygon id="right-hand" points="59,335 67,343 75,344 78,354 74,363 73,373 70,385 62,376 58,385 57,398 53,389 52,402 49,406 46,391 47,381 47,371 55,360 57,348" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            
+                            <!-- between_abs&chest -->
+                            <polygon id="between_abs&chest" class="no-hover" points="207,245,180,220,194,225,211,225,221,222,232,214,240,200,244,211,253,218,263,225,281,225,299,220,271,247,276,233,244,223,238,228,231,221,207,233" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />    
+        
+                                <!-- Abdomen -->
+                            <polygon id="abdomen" onclick="muscleClicked('abdomen')" points="241,226,232,223,223,221,209,227,206,233,209,241,207,253,209,300,209,317,212,331,219,353,227,362,234,369,240,371,248,368,255,359,261,346,265,334,270,266,269,251,269,243,273,235,270,229,259,226,251,222" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!--  Between_abs-->
+                            <polygon id="Between_abs" class="no-hover" points="236,406,247,409,261,366,271,345,289,335,296,336,281,328,275,316,275,303,274,283,271,266,271,289,267,314,267,328,250,366,244,370,238,370,227,359,214,337,212,316,210,297,210,282,209,275,204,282,204,303,203,318,199,325,191,333,196,341,209,347,216,368,223,380,225,396" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            
+                            <g class="side" onclick="muscleClicked('side')">
+                                <!--  Right_side-->
+                                <polygon id="Right_side" points="180,328,185,293,180,276,171,251,167,234,167,206,176,216,184,225,208,245,205,265,205,284,203,300,202,311,204,317,199,323,195,327,187,333" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                                <!--  Left_side-->
+                                <polygon id="Left_side" points="283,328,295,333,299,317,295,288,297,276,314,237,312,223,314,209,299,218,296,224,289,230,281,241,272,245,274,262,274,270,275,291,275,300,275,315" 
+                                        fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <g class="thigh" onclick="muscleClicked('thigh')">
+                                <!-- Left Thigh -->
+                                <polygon id="left-thigh" points="262,519,273,536,285,532,292,519,303,516,315,483,314,447,309,388,301,365,298,334,281,339,273,347,263,357,253,392,248,404,239,412,239,426,240,439,250,470" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Right Thigh -->
+                                <polygon id="right-thigh" points="187,515,177,518,169,507,164,472,167,411,172,382,179,334,191,336,211,357,217,369,224,394,230,402,237,412,238,425,235,437,230,458,221,490,218,502,216,516,210,525,203,536,193,537" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                                
+        
+                            <!-- Left Knee -->
+                            <polygon id="left-knee" class="no-hover" points="265,525,273,550,285,560,297,560,305,554,311,545,311,532,307,521,300,520,294,519,292,527,286,535,281,538,276,534" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                            <!-- Right Knee -->
+                            <polygon id="right-knee" class="no-hover" points="173,517,169,541,179,559,187,562,193,561,198,557,202,553,206,548,216,526,203,534,197,535,189,521,181,519" 
+                            fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                            <!-- Abs Line -->
+                            <polygon id="1" class="no-hover" points="215,304,235,304,239,293,242,303,264,305" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="2" class="no-hover" points="220,310,239,311,241,319,246,311,253,310,259,308" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="3" class="no-hover" points="220,278,238,278,240,286,244,279,258,279" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+            
+                            <polygon id="4" class="no-hover" points="211,274,233,274,238,262,241,271,263,276" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+            
+                            <polygon id="5" class="no-hover" points="223,252,237,251,239,257,245,249,257,249" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+            
+                            <polygon id="6" class="no-hover" points="213,249,234,243,240,233,240,243,263,246" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+            
+                            <polygon id="7" class="no-hover" points="237,325,240,359" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <g class="leg" onclick="muscleClicked('leg')">
+                                <!-- Right Leg -->
+                                <polygon id="right-leg" points="343,725,339,728,334,732,326,736,318,734,309,727,303,718,294,710,292,690,290,679,289,653,282,622,273,606,274,583,277,553,284,559,294,562,303,549,311,542,320,600,317,625,316,649,315,673,315,687,334,713,334,717,339,716" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Left Foot -->
+                                <polygon id="left-leg" points="157,737,147,734,141,729,135,723,139,716,149,706,161,685,164,650,162,623,158,606,160,580,166,551,170,547,180,557,186,561,192,562,199,554,202,564,203,577,204,588,204,603,200,612,196,626,189,649,188,659,188,666,189,676,188,682,187,689,187,697,187,704,184,713,177,718,167,731,174,728" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Leg -->
+                                <polygon id="right-leg" points="343,725,339,728,334,732,326,736,318,734,309,727,303,718,294,710,292,690,290,679,289,653,282,622,273,606,274,583,277,553,284,559,294,562,303,549,311,542,320,600,317,625,316,649,315,673,315,687,334,713,334,717,339,716" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+        
+                                <!-- Left Foot -->
+                                <polygon id="left-leg" points="157,737,147,734,141,729,135,723,139,716,149,706,161,685,164,650,162,623,158,606,160,580,166,551,170,547,180,557,186,561,192,562,199,554,202,564,203,577,204,588,204,603,200,612,196,626,189,649,188,659,188,666,189,676,188,682,187,689,187,697,187,704,184,713,177,718,167,731,174,728" 
+                                    fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                        
+                        </svg>
+        
+                        <!-- FEMALE FORNT  -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 800" width="400" hieght="400" preserveAspectRatio="xMidYMid meet" id="Female-Front" class="flex-initial hidden w-full h-auto">
+                            <!-- Hair -->
+                            <polygon id="hair" class="no-hover" points="188,157 174,130 169,106 177,69 192,62 204,53 223,57 246,65 255,91 258,105 248,142 240,154 235,148 236,133 241,121 241,107 236,86 237,96 228,97 199,83 194,91 188,100 181,114 184,126 190,142" fill="#000000" stroke="black" stroke-width="5" />
+                        
+                            <!-- Face -->
+                            <polygon id="face" class="no-hover" points="214,157 198,149 193,144 187,129 183,120 185,101 191,94 200,88 213,91 225,98 236,102 244,112 237,130 233,148" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                            <!-- Neck -->
+                            <polygon id="neck" class="no-hover" points="214,160 192,145 191,183 207,190 211,195 213,189 234,184 236,145" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            
+                        <g class="neck">
+                                <!-- Left Neck -->
+                                <polygon id="left_neck" points="191,153 188,170 163,184 172,186 182,186 189,186" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Neck -->
+                                <polygon id="right_neck" points="234,149 234,180 247,187 252,189 265,182 255,180 241,176 238,167" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+        
+                        <g class="shoulder">
+                                <!-- Left Shoulder -->
+                                <polygon id="left_shoulder" points="172,186 145,184 131,194 124,214 116,237 136,224" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Shoulder -->
+                                <polygon id="right_shoulder" points="255,187 277,183 293,192 308,234 288,224" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+        
+                        <g class="chest">
+                            <!-- Left Chest -->
+                                <polygon id="left_chest" points="137,224 170,187 199,187 210,196 211,228 204,243 174,248 164,246 156,232" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Chest -->
+                                <polygon id="right_chest" points="213,190 255,186 292,222 277,222 272,233 260,246 238,247 223,241 211,233" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+        
+                            <g class="biceps">
+                                <!-- Left Biceps -->
+                                <polygon id="left_biceps" points="145,223 118,237 100,265 94,283 97,287 108,288 117,282 151,242 151,230" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Biceps -->
+                                <polygon id="right_biceps" points="305,283 323,290 328,285 326,261 302,231 284,225 275,225 275,231 276,240" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <g class="forearm">
+                                <!-- Left Forearm -->
+                                <polygon id="left_forearm" points="100,263 61,302 43,339 53,349 87,324 107,306 116,288 104,292 96,286" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Forearm -->
+                                <polygon id="right_forearm" points="310,285 315,300 344,330 367,346 374,348 381,341 381,335 371,313 359,296 329,271 331,284 325,290" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <g class=hand>
+                                <!-- Left Hand -->
+                                <polygon id="left_hand" points="41,336 46,347 57,349 50,355 50,375 43,382 43,398 36,392 37,378 26,387 24,400 27,409 19,404 17,393" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- Right Hand -->
+                                <polygon id="right_hand" points="384,339 381,345 370,346 374,356 375,367 379,377 382,393 390,399 388,380 399,387 399,399 397,409 402,413 406,401 400,369" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <g class="side">
+                                <!-- left_side -->
+                                <polygon id="left_side" points="153,231,156,257,161,279,165,301,160,324,148,346,160,350,170,347,175,339,182,320,182,294,183,264" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- right_side -->
+                                <polygon id="right_side" points="274,231,242,260,241,281,245,307,246,331,253,342,263,348,272,347,263,320,257,301" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+                            
+                            <!-- abdomen -->
+                            <polygon id="abdomen" points="210,250,206,242,198,246,184,256,184,265,184,285,184,341,193,369,209,394,215,394,233,373,237,334,241,299,242,269,242,258,233,245,219,242" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            
+                            <!-- between_abs -->
+                            <polygon id="between_abs" class="no-hover" points="184,297,179,337,154,349,161,350,174,362,181,376,195,397,214,412,227,398,238,383,251,360,269,353,259,349,250,339,246,329,242,286,239,315,238,346,230,373,220,392,214,393,198,386,188,359,184,333,185,319" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            
+                            <g class="thigh">
+                                <!-- left_thigh -->
+                                <polygon id="left_thigh" points="152,350,134,419,134,440,139,498,144,537,150,544,156,540,163,560,171,562,183,540,200,444,203,425,213,414,199,398,186,380,166,352" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- right_thigh -->
+                                <polygon id="right_thigh" points="274,350,253,357,231,395,213,412,220,415,227,460,241,539,248,553,258,563,269,537,277,541,282,533,292,415" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+        
+                            <!-- left_knee -->
+                            <polygon id="left_knee" class="no-hover" points="144,537,155,537,165,558,174,555,183,540,183,556,175,572,171,594,156,594,139,588,137,576" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            
+                            <!-- right_knee -->
+                            <polygon id="right_knee" class="no-hover" points="244,542,243,558,253,574,258,590,271,592,280,586,287,572,290,564,284,535,280,542,269,540,262,561,254,562" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            
+                            <g class="leg">
+                                <!-- left_leg -->
+                                <polygon id="left_leg" points="135,571,144,591,169,591,172,604,167,634,162,660,153,708,157,717,155,729,156,739,150,746,147,763,137,764,126,762,118,762,113,757,119,743,131,725,139,707,133,661,128,616" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                                
+                                <!-- right_leg -->
+                                <polygon id="right_leg" points="288,573,283,578,277,588,255,588,256,598,256,635,263,656,271,701,269,717,270,726,270,736,270,751,276,746,278,760,284,761,296,762,310,762,315,756,302,732,288,711,293,662,294,630,295,602,291,581" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            </g>
+        
+                            <!-- Extra -->
+                            <polygon id="8" class="no-hover" points="216,233,203,240,212,247,222,241" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            <polygon id="9" class="no-hover" points="201,244,172,248,181,258" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            <polygon id="10" class="no-hover" points="233,245,246,255,257,248" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            <polygon id="left ear" class="no-hover" points="185,132,178,127,180,112,186,121" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                            <polygon id="right ear" class="no-hover" points="239,128,245,112,247,120,245,130" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                            <!-- Abs Line -->
+                            <polygon id="1" class="no-hover" points="190,270,212,269,213,258,220,269,236,271" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="2" class="no-hover" points="195,274,209,274,211,279,217,274,229,275" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="3" class="no-hover" points="197,298,206,299,213,292,220,298,234,298" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="4" class="no-hover" points="196,300,208,300,212,308,213,301,229,301" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="5" class="no-hover" points="193,326,208,326,212,317,217,325,231,326" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="6" class="no-hover" points="195,330,208,330,211,339,214,331,227,331" 
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+        
+                            <polygon id="7" class="no-hover" points="211,349,212,361,212,380,212,373,212,357"
+                            fill="#FDD7B0" stroke="black" stroke-width="4" />
+                        </svg>
+                </div>
+              
+                <div class="flex">
+                        <!--MALE BACK  -->
+                        <svg viewBox="0 0 450 750" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" id="Male-Back" class="flex-intial w-full h-auto">
+                            <!-- viewBox="0 0 800 800" > -->
+                            <!-- Polygon for left_leg -->
+                            <polygon points="138,718 129,727 136,734 149,735 154,741 176,743 180,733 178,708 180,688 186,660 195,634 189,639 183,637 179,627 175,616 168,624 164,636 154,633 150,620 152,645 153,660 154,672 156,681 156,688 155,699 152,707" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                            <!-- Polygon for right_leg -->
+                            <polygon points="331,717 340,725 336,731 328,731 320,736 308,745 301,742 290,737 293,715 289,706 292,690 277,638 271,625 285,641 290,632 294,618 302,631 308,636 316,629 321,611 315,661 314,693 318,704 322,712" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="calf">
+                            <!-- Polygon for left_calf -->
+                        <polygon points="176,618 162,635 154,632 147,606 155,564 161,564 171,575 178,577 184,573 193,574 196,579 198,607 199,624 195,633 187,637 178,634"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_calf -->
+                        <polygon points="294,618 291,632 287,639 276,636 271,624 269,603 273,580 281,574 291,575 308,566 313,562 320,582 321,604 319,619 317,634 308,637"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>
+                        
+                        <!-- Polygon for left_knee -->
+                        <polygon points="154,564 159,552 162,515 170,536 177,529 185,515 188,529 190,541 198,543 210,530 206,541 201,551 196,562 198,580 193,573 185,573 179,577 169,574 161,564" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_knee -->
+                        <polygon points="284,513 279,536 272,545 259,528 263,547 274,558 271,583 279,574 287,574 293,576 306,564 314,564 309,547 308,522 304,527 298,535 291,524" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="hamstring">
+                            <!-- Polygon for left_hamstring -->
+                        <polygon points="187,337 184,350 176,388 181,406 204,413 223,413 233,406 229,448 215,498 204,539 191,545 188,528 186,514 177,530 169,533 162,514 157,497 158,431 160,395 168,364 170,352"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_hamstring -->
+                        <polygon points="276,337 284,350 294,382 288,397 286,407 260,415 245,414 234,405 240,455 252,489 256,511 259,527 267,543 274,544 281,530 283,515 291,531 298,535 303,523 309,506 313,457 310,435 309,410 304,380 299,366 299,353"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+                        
+                        <g class="glute">
+                            <!-- Polygon for left_glute -->
+                        <polygon points="191,337 215,331 227,335 235,349 235,371 233,399 228,413 217,412 201,412 188,408 180,399 177,391 176,372 187,346"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_glute -->
+                        <polygon points="234,350 234,400 244,413 260,413 281,407 289,399 293,385 290,369 288,353 280,340 266,330 251,333 243,334 237,339"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g> 
+                        
+                        <!-- Polygon for thoracolumbar -->
+                        <polygon points="235,349 226,339 209,333 198,334 204,326 204,297 212,284 223,254 223,231 230,247 236,252 243,243 245,230 246,258 251,269 262,293 264,300 265,318 267,329 258,331 251,331 244,335 240,340"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="lat">
+                            <!-- Polygon for left_lat -->
+                        <polygon points="171,349 186,339 195,337 205,325 205,298 224,254 226,240 217,215 193,166 189,175 174,182 169,189 154,198 156,208 157,225 157,234 163,254 172,271 176,290 176,319"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_lat -->
+                        <polygon points="266,330 282,338 298,352 293,306 294,281 299,268 312,232 312,211 314,198 276,167 267,179 249,225 244,236 247,262 256,282 261,291 264,300"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>   
+                        
+                        <!-- Polygon for rhomboids -->
+                        <polygon points="230,245 237,252 244,234 254,209 269,177 277,167 266,171 243,170 221,168 210,171 203,173 197,169 205,182 216,212 224,230"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for trap -->
+                        <polygon points="202,173 227,169 254,169 268,171 280,161 292,157 267,142 201,142 176,156 187,161"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="shoulder">
+                            <!-- Polygon for left_shoulder -->
+                        <polygon points="136,177 125,203 138,201 156,196 178,181 191,171 194,165 175,157 163,158 148,167"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_shoulder -->
+                        <polygon points="276,166 313,198 326,202 332,198 338,202 344,204 338,186 322,166 306,158 294,154 284,160"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>   
+                        
+                        <g class="tricep">
+                            <!-- Polygon for left_tricep -->
+                        <polygon points="99,260 110,258 115,274 122,275 130,271 156,234 157,221 156,207 156,196 138,200 127,199 123,209 110,225 106,234 99,247"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_tricep -->
+                        <polygon points="355,278 357,259 371,262 371,249 362,234 358,220 345,204 331,199 314,200 312,217 312,238 328,255 339,267 342,275"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>   
+                        
+                        <g class="forearm">
+                            <!-- Polygon for left_forearm -->
+                        <polygon points="48,349 55,357 65,356 74,344 89,327 104,307 118,287 127,271 121,275 114,275 111,258 102,260 96,258 80,272 71,290 59,315 56,333"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_forearm -->
+                        <polygon points="404,356 413,358 421,350 413,322 401,294 390,276 371,254 372,261 358,260 356,267 356,276 343,273 356,291 369,315 399,352"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+        
+                        </g>
+                                    
+                        <g class="hand">
+                            <!-- Polygon for left_hand -->
+                        <polygon points="45,371 40,385 43,407 50,413 55,420 53,406 52,392 58,413 58,398 58,387 63,382 64,395 72,396 72,387 71,379 70,370 65,360 58,359 54,352 48,352"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_hand -->
+                        <polygon points="421,352 422,365 428,384 427,405 415,417 420,404 418,388 407,382 405,393 397,395 399,379 398,369 405,362 403,355 414,358"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>   
+                        
+                            <!-- Polygon for neck -->
+                        <polygon points="207,142 211,135 210,115 209,104 216,113 224,112 231,110 241,111 252,115 261,103 259,114 259,131 265,141 240,141" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for hair -->
+                        <polygon points="217,114 231,109 254,113 265,96 265,84 268,68 263,50 254,39 260,41 253,33 230,36 236,31 221,35 212,38 202,49 200,57 200,72 203,82 206,97 211,103" class="no-hover"fill="#000000" stroke="black" stroke-width="5"/>
+                        
+                        
+                        <!-- Polygon for left_ear -->
+                        <polygon points="202,80 200,89 200,96 205,100 206,88" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_ear -->
+                        <polygon points="259,104 265,78 270,87 270,96 264,101" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </svg>
+        
+                        <!--FEMALE BACK  -->
+                        <svg viewBox="0 0 500 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" id="Female-Back" class=" hidden mt-9 flex-intial w-full h-auto">
+                            <!-- viewBox="0 0 800 800" > -->
+                            <!-- Polygon for left_leg -->
+                            <polygon points="139,730,157,745,177,744,181,729,181,712,180,675,188,633,180,635,172,618,163,631,154,618,160,665,162,696,158,707,159,717,154,724" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                            <!-- Polygon for right_leg -->
+                            <polygon points="336,730,326,744,305,748,295,739,300,727,298,709,295,694,289,632,296,638,302,623,310,626,317,635,323,617,319,683,317,712,323,723" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="calf">
+                            <!-- Polygon for left_calf -->
+                        <polygon points="174,620,166,634,159,634,154,624,152,610,152,594,155,555,161,547,165,551,173,561,180,562,191,564,197,578,197,598,190,627,187,632,181,638" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_calf -->
+                        <polygon points="302,619,297,637,289,630,286,617,283,593,283,586,283,570,292,562,302,566,314,547,320,551,326,592,323,619,316,633,310,631" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>
+                        
+                        <!-- Polygon for left_knee -->
+                        <polygon points="197,577,189,563,174,564,163,548,157,552,162,535,163,525,169,526,183,510,188,496,194,533,198,540,209,526,196,555" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_knee -->
+                        <polygon points="320,550,313,545,304,564,290,562,282,576,279,556,270,533,277,539,286,524,288,500,295,514,305,525,312,526" class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="hamstring">
+                            <!-- Polygon for left_hamstring -->
+                        <polygon points="236,386,230,402,220,452,210,504,210,520,205,534,199,539,192,532,189,516,187,498,180,516,167,527,167,512,162,488,163,464,161,422,161,388,167,366,172,336,183,313,203,310,190,319,183,335,177,375,178,386,186,396,193,400,208,402,218,398,224,395,232,392" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_hamstring -->
+                        <polygon points="311,532,299,518,288,499,284,527,276,542,267,530,267,515,266,486,246,402,241,388,256,399,274,401,281,398,292,394,300,374,299,352,286,316,273,310,295,312,309,349,313,384,314,395,309,506" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>
+                        
+                        <g class="glute">
+                            <!-- Polygon for left_glute -->
+                        <polygon points="237,382,240,339,231,318,207,307,194,312,188,326,178,347,178,358,180,380,185,398,197,399,212,400,229,393" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_glute -->
+                        <polygon points="286,315,265,307,249,317,240,333,239,351,237,381,246,390,260,399,278,399,288,398,295,385,300,364,296,331" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g> 
+                        
+                        <!-- Polygon for thoracolumbar -->
+                        <polygon points="230,322,221,316,207,311,214,284,226,264,228,258,232,252,230,235,237,238,246,233,245,254,249,266,254,273,258,277,264,289,268,308,263,314,244,321,241,329,237,337" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="lat">
+                            <!-- Polygon for left_lat -->
+                        <polygon points="232,238,224,217,218,189,211,170,204,161,199,170,184,177,174,186,175,194,176,202,179,217,187,247,193,274,193,292,184,310,194,309,209,308,211,288,216,277,229,262,231,248" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_lat -->
+                        <polygon points="293,311,270,309,265,286,256,271,245,260,247,230,251,218,258,195,263,174,273,164,292,174,305,188,302,208,296,225,291,248,283,266,283,288" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>   
+                        
+                        <!-- Polygon for rhomboids -->
+                        <polygon points="249,232,240,237,231,233,225,205,214,180,210,167,204,165,212,160,228,158,239,158,256,158,274,158,271,166,263,177,254,209" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for trap -->
+                        <polygon points="203,164,195,159,188,155,181,154,198,147,210,141,230,135,242,136,254,136,268,142,283,146,295,155,285,155,283,160,277,161,264,157,242,157,213,158" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <g class="shoulder">
+                            <!-- Polygon for left_shoulder -->
+                        <polygon points="203,162,195,155,184,156,175,156,161,161,155,176,151,183,148,189,148,197,154,192,164,191,172,189,180,181,190,172,199,167" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_shoulder -->
+                        <polygon points="274,165,284,159,294,153,310,154,321,170,329,195,311,192,305,192,298,179,285,172" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>   
+                        
+                        <g class="tricep">
+                            <!-- Polygon for left_tricep -->
+                        <polygon points="174,186,169,189,158,193,150,195,139,210,121,235,118,244,115,250,127,250,127,263,137,263,150,245,161,226,171,218,177,206" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        
+                        <!-- Polygon for right_tricep -->
+                        <polygon points="345,263,335,257,316,233,300,206,304,190,312,192,320,190,327,195,340,207,360,246,360,253,354,247,351,258" fill="#FDD7B0" stroke="black" stroke-width="5" />
+                        </g>   
+                        
+                        <g class="forearm">
+                            <!-- Polygon for left_forearm -->
+                        <polygon points="138,263,123,284,90,323,79,333,68,332,67,320,81,295,96,271,108,254,115,245,117,253,127,252,127,263" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_forearm -->
+                        <polygon points="396,332,402,333,411,327,408,314,397,296,387,282,378,267,361,245,361,253,353,247,348,263,338,260,345,272,348,280,378,310,387,321" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                    
+                        </g>
+                                    
+                        <g class="hand">
+                            <!-- Polygon for left_hand -->
+                        <polygon points="70,331,79,333,77,348,74,359,71,373,71,379,64,370,67,362,58,364,52,368,51,395,45,386,43,369,49,358,52,346,59,334,63,324" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for right_hand -->
+                        <polygon points="411,323,409,334,400,334,400,352,405,372,403,378,410,379,412,364,422,365,424,371,424,390,426,395,432,385,433,366" fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        </g>   
+                        
+                            <!-- Polygon for neck -->
+                        <polygon points="217,117,219,125,219,136,237,134,259,137,258,128,259,118,253,113,246,113,239,109,230,110"  class="no-hover"fill="#FDD7B0" stroke="black" stroke-width="5"/>
+                        
+                        <!-- Polygon for hair -->
+                        <polygon points="263,137,273,126,283,100,280,64,263,40,249,37,229,34,208,45,197,59,194,75,194,92,196,108,199,118,206,130,214,135,215,122,224,110,228,97,229,106,236,111,238,87,242,109,248,109,255,111,262,117,263,123"  class="no-hover"fill="#000000" stroke="black" stroke-width="5"/>
+                        </svg>
+                </div>
+              </div>
+
+                <div class="p-4 w-full">
+                    <div class="container bg-[#A4BF9D] rounded-2xl shadow-lg p-6 mx-auto mt-28 w-fit">
+                        <!-- Toggle Switch Section -->
+                        <div class="bg-[#0C3D48] text-white rounded-xl p-6 flex flex-col items-center justify-center space-y-4 shadow-md">
+                            
+                            <!-- Title -->
+                            <span class="text-4xl font-semibold">Equipments</span>
+                            
+                            <!-- Toggle Switch -->
+                            <div class="relative inline-block w-20 h-10">
+                                <input type="checkbox" id="gender-toggle-single" class="hidden peer">
+                                <label for="gender-toggle-single" class="block w-full h-full rounded-full cursor-pointer bg-blue-600 peer-checked:bg-pink-600 transition-all duration-300">
+                                    <!-- Toggle Circle -->
+                                    <span id="circle" class="absolute left-1 top-1 w-8 h-8 bg-white rounded-full flex items-center justify-center transition-transform duration-300 ease-in-out peer-checked:translate-x-10">
+                                        <i id="toggle-icon-male" class="fa-solid fa-mars text-gray-600 absolute opacity-100 peer-checked:opacity-0 transition-opacity duration-300 ease-in-out"></i>
+                                        <i id="toggle-icon-female" class="fa-solid fa-venus text-gray-600 absolute opacity-0 peer-checked:opacity-100 transition-opacity duration-300 ease-in-out"></i>
+                                    </span>
+                                </label>
+                            </div>
+                            
+                            <!-- Toggle Text -->
+                            <span id="toggle-text" class="text-xl font-medium">Male</span>
+                        </div>
+                    
+                            <!-- Equipment List -->
+                            <div class="grid grid-cols-3 gap-4 mt-4">
+                                <!-- Equipment Item -->
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" checked value="Featured" onclick="selectEquipment('Featured')">
+                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gray-700 peer-checked:text-blue-600 transition-colors duration-300 no-hover">
+                                        <polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8 12 2" />
+                                      </svg> -->
+                                    <i class="fa-regular fa-star text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300 text-3xl no-hover"></i>
+                                    <span class="mt-2 text-gray-800 font-medium">Featured</span>
+                                </label>
+                                
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Barbell" onclick="selectEquipment('Barbell')" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" 
+                                        class="w-10 h-10 stroke-gray-700 peer-checked:stroke-[#109baa] transition-colors duration-300">
+                                        <path d="M2 12h2M6 9h-2v6h2M6 8v8h2v-8zM8 12h8M16 8v8h2v-8zM18 9v6h2v-6zM22 12h-2"/>
+                                    </svg>
+                                    <span class="mt-2 text-gray-800 font-medium">Barbell</span>
+                                </label>
+                                
+                                
+
+                                <!-- Dumbbells -->
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Dumbbells" onclick="selectEquipment('Dumbbells')">
+                                    <svg class="w-10 h-10 text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12h1" />
+                                        <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
+                                        <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
+                                        <path d="M9 12h6" />
+                                        <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
+                                        <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" />
+                                        <path d="M22 12h-1" />
+                                    </svg>
+                                    <svg class="w-10 h-10 text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M2 12h1" />
+                                        <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
+                                        <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
+                                        <path d="M9 12h6" />
+                                        <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
+                                        <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" />
+                                        <path d="M22 12h-1" />
+                                    </svg>
+                                    <span class="mt-2 text-gray-800 font-medium">Dumbbells</span>
+                                </label>
+                    
+                                <!-- Medicine Ball -->
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Medicine Ball" onclick="selectEquipment('Medicine Ball')">
+                                    <svg class="w-10 h-10 text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="8" />
+                                    </svg>
+                                    <span class="mt-2 text-gray-800 font-medium">Medicine Ball</span>
+                                </label>
+                    
+                                <!-- Kettlebells -->
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-xl cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Kettlebells" onclick="selectEquipment('Kettlebells')">
+                                    <svg class="w-10 h-10 text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="14" r="6" />
+                                        <rect x="9" y="2" width="6" height="6" />
+                                    </svg>
+                                    <span class="mt-2 text-gray-800 font-medium">Kettlebells</span>
+                                </label>
+
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Bodyweight" onclick="selectEquipment('Bodyweight')">
+                                      <i class="fa-duotone fa-solid fa-child-reaching text-3xl peer-checked:text-[#109baa] transition-colors text-black duration-300"></i>
+                                    <span class="mt-2 text-gray-800 font-medium">Bodyweight</span>
+                                </label>
+
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Machine" onclick="selectEquipment('Machine')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"height="24" fill="currentColor" class="w-10 h-10 text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300">
+                                            <!-- Frame -->
+                                            <rect x="4" y="3" width="2" height="18" />
+                                            <rect x="18" y="3" width="2" height="18" />
+                                            <rect x="4" y="20" width="16" height="2" />
+                                            
+                                            <!-- Weights -->
+                                            <rect x="7" y="5" width="10" height="2" />
+                                            <rect x="7" y="8" width="10" height="2" />
+                                            <rect x="7" y="11" width="10" height="2" />
+                                            
+                                            <!-- Handles -->
+                                            <rect x="2" y="6" width="2" height="6" />
+                                            <rect x="20" y="6" width="2" height="6" />
+                                        </svg>
+
+                                    <span class="mt-2 text-gray-800 font-medium">Machine</span>
+                                </label>
+
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Cardio" onclick="selectEquipment('Cardio')">
+                                      <i class="fa-solid fa-person-running text-4xl peer-checked:text-[#109baa] text-black transition-colors duration-300"></i>
+                                    <span class="mt-2 text-gray-800 font-medium">Cardio</span>
+                                </label>
+
+                                <label class="flex flex-col items-center justify-center hover:scale-90 bg-gray-100 rounded-lg p-4 shadow-sm hover:shadow-md cursor-pointer transition duration-300">
+                                    <input type="radio" name="equipment" class="hidden peer" value="Recovery" onclick="selectEquipment('Recovery')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-gray-700 peer-checked:text-[#109baa] transition-colors duration-300">
+                                        <circle cx="12" cy="12" r="8" />
+                                        <path d="M8 12h8M12 8v8" />
+                                      </svg>
+                                    <span class="mt-2 text-gray-800 font-medium">Recovery</span>
+                                </label>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>                                
+    </div>
+
+    <footer class="bg-[#0C3D48] shadow-sm ">
+        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 BeFit. All rights reserved.</span>
+          <div class="mt-4 flex justify-center space-x-6 md:mt-0">
+            <a href="https://www.facebook.com/" class="text-gray-500 pt-1 hover:text-sm hover:text-gray-400 dark:text-gray-400 dark:hover:text-white">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://x.com/?lang=en&mx=2" class="text-gray-500 text-base pt-2 hover:text-gray-400 dark:text-gray-400 dark:hover:text-white hover:scale-90 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 50 50" class="fill-current hover:scale-45 transition-transform">
+                    <path d="M 5.9199219 6 L 20.582031 27.375 L 6.2304688 44 L 9.4101562 44 L 21.986328 29.421875 L 31.986328 44 L 44 44 L 28.681641 21.669922 L 42.199219 6 L 39.029297 6 L 27.275391 19.617188 L 17.933594 6 L 5.9199219 6 z M 9.7167969 8 L 16.880859 8 L 40.203125 42 L 33.039062 42 L 9.7167969 8 z"></path>
+                </svg>
+            </a>                             
+            <a href="https://www.instagram.com/" class="text-gray-500 hover:text-sm hover:text-gray-400 pt-1 dark:text-gray-400 dark:hover:text-white">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/" class="text-gray-500 hover:text-sm hover:text-gray-400 pt-1 dark:text-gray-400 dark:hover:text-white">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+          <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+              <li>
+                  <a href="Privacy Policy.html" class="hover:underline hover:text-white me-4 md:me-6">Privacy Policy</a>
+              </li>
+              <li>
+                  <a href="Terms of service.html" class="hover:underline hover:text-white me-4 md:me-6">Terms of Service</a>
+              </li>
+              <li>
+                  <a href="Contact us.html" class="hover:underline hover:text-white">Contact Us</a>
+              </li>
+          </ul>
+        </div>
+    </footer>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
